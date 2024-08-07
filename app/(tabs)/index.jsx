@@ -1,106 +1,36 @@
 import React, {useState} from "react"
-import {Text, View, TextInput, Button} from 'react-native'
+import {Text, View, TextInput, Button, StyleSheet, Image} from 'react-native'
+import { LinearGradient } from 'expo-linear-gradient';
 
-const style = function (){
-    return ({
-        conteiner:{
-            flex:1,
-            justifyContent: 'center',
-            alingItems: 'center',
-        },
-        input:{
-            height: 40,
-            margin: 12,
-            borderWidht: 1,
-            padding: 1
-        }, 
-        buttonStyle: {
-            color: '#ffffff'
-        },
-        buttonContainer:{
-            flexDirection:'row'
-        }
-        })
-}
+const style = StyleSheet.create({
+    container:{
+        flex:1,
+        alignItems:'center',
+        justifyContent: 'center'
+    },
+    logo: {
+        width: 100,
+        height: 100,
+    } 
 
-const Calculadora = function () {
-    const [number1, onChangeNumber1] = useState('');
-    const [number2, onChangeNumber2] = useState('');
-    const [resultado, setResultado] = useState('')
 
-    const soma = function (){
-        setResultado(Number(number1)+Number(number2))
-        onChangeNumber1("")
-        onChangeNumber2("")
-        return true
-    }
-   
-    const diminui = function (){
-        setResultado(Number(number1)-Number(number2))
-        onChangeNumber1("")
-        onChangeNumber2("")
-        return true
-    }
+})
+const SplashScreen = function () {
+    const logoIst = 'https://png.pngtree.com/png-vector/20220411/ourmid/pngtree-red-3d-heart-emoji-realistic-shadow-png-image_4539964.png'
+    return <LinearGradient
+                start={{x: 0, y: 0}}
+                end={{x: 0, y: 1}}
+                colors={['#ffb6c1', '#fff5ee']}
+                style={style.container}
+    >
+              <Image
+            style={style.logo}
+            source={{
+                uri:logoIst,
+            }}
+            
+            />
+    </LinearGradient>
     
-    const multiplica = function (){
-        setResultado(Number(number1)*Number(number2))
-        onChangeNumber1("")
-        onChangeNumber2("")
-        return true
-    }
-   
-    const dividir = function (){
-        setResultado(Number(number1)/Number(number2))
-        onChangeNumber1("")
-        onChangeNumber2("")
-        return true
-    }
-
-    return <View style={style().conteiner}>
-        <Text >Calculadora</Text>
-
-        <TextInput
-        onChangeText={onChangeNumber1}
-        value={number1}
-        placeholder="insira o número aqui"
-        keyboardType= "numeric"
-        style={style().input}
-        />
-
-         <TextInput
-        onChangeText={onChangeNumber2}
-        value={number2}
-        placeholder="insira o segundo número aqui"
-        keyboardType= "numeric"
-        style={style().input}
-        />
-        
-        <Button
-        title="+"
-        onPress={() => soma()}
-        />
-
-        <Button
-        title="-"
-        onPress={() => diminui()}
-        />
-
-        <Button
-        title="X"
-        onPress={() => multiplica()}
-        />
-
-        <Button
-        title="/"
-        onPress={() => divide()}
-        />
-
-        <Text>
-            Resultado = {resultado}
-        </Text>
-
-        </View>
-
 }
-
-export default Calculadora;
+export default SplashScreen; 
